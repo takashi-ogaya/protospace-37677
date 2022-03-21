@@ -1,7 +1,8 @@
 class PrototypesController < ApplicationController
 
-  before_action :authenticate_user!, only: [:index, :show]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :contributor_confirmation, only: [:edit, :update]
+  
   def index  # indexアクションを定義した
     @prototypes = Prototype.all
   end
